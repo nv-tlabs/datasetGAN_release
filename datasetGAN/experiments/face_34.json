@@ -1,0 +1,19 @@
+{
+  "exp_dir": "model_dir/face_34",
+  "category": "face",
+  "debug": false,
+  "dim": [512, 512, 5088],
+  "deeplab_res": 512,
+  "number_class": 34,
+  "testing_data_number_class": 34,
+  "max_training": 16,
+  "stylegan_ver": "1",
+  "annotation_data_from_w": false,
+  "annotation_mask_path": "./dataset_release/annotation/training_data/face_processed",
+  "testing_path": "./dataset_release/annotation/testing_data/face_34_class",
+  "average_latent": "./dataset_release/training_latent/face_34/avg_latent_stylegan1.npy",
+  "annotation_image_latent_path": "./dataset_release/training_latent/face_34/latent_stylegan1.npy",
+  "stylegan_checkpoint": "./dataset_release/stylegan_pretrain/karras2019stylegan-celebahq-1024x1024.for_g_all.pt",
+  "model_num": 10,
+    "upsample_mode":"bilinear"
+ }

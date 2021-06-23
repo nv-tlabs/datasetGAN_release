@@ -1,0 +1,20 @@
+{
+  "exp_dir": "model_dir/car_20",
+  "category": "car",
+  "debug": false,
+  "dim": [384, 512, 5056],
+  "deeplab_res": 512,
+  "number_class": 20,
+  "testing_data_number_class": 20,
+  "max_training": 16,
+  "stylegan_ver": "1",
+  "annotation_data_from_w": false,
+  "annotation_mask_path": "./dataset_release/annotation/training_data/car_processed",
+  "testing_path": "./dataset_release/annotation/testing_data/car_20_class",
+  "average_latent": "./dataset_release/training_latent/car_20/avg_latent_stylegan1.npy",
+  "annotation_image_latent_path": "./dataset_release/training_latent/car_20/latent_stylegan1.npy",
+  "stylegan_checkpoint": "./dataset_release/stylegan_pretrain/karras2019stylegan-cars-512x384.for_g_all.pt",
+  "model_num": 10,
+    "upsample_mode":"bilinear"
+}
+

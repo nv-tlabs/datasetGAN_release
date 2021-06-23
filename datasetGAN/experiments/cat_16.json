@@ -1,0 +1,19 @@
+{
+  "exp_dir": "model_dir/cat_16",
+  "category": "cat",
+  "debug": false,
+  "dim": [256, 256, 4992],
+  "deeplab_res": 256,
+  "number_class": 16,
+  "testing_data_number_class": 16,
+  "max_training": 30,
+  "stylegan_ver": "1",
+  "annotation_data_from_w": false,
+  "annotation_mask_path": "./dataset_release/annotation/training_data/cat_processed",
+  "testing_path": "./dataset_release/annotation/testing_data/cat_16_class",
+  "average_latent": "./dataset_release/training_latent/cat_16/avg_latent_cat.npy",
+  "annotation_image_latent_path": "./dataset_release/training_latent/cat_16/latent_stylegan1.npy",
+  "stylegan_checkpoint": "./dataset_release/stylegan_pretrain/karras2019stylegan-cats-256x256.for_g_all.pt",
+  "model_num": 10,
+    "upsample_mode":"bilinear"
+ }
