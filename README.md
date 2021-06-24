@@ -37,7 +37,9 @@ pip install -r requirements.txt
 
 *Download Dataset from [google drive](https://drive.google.com/drive/folders/1Oa9XpyKnRSN5s9-ab2-5j3wvH374JOu8?usp=sharing)* and put it in the folder of ***./datasetGAN/dataset_release***.  Please be aware that the dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.
 
-*Download pretrained checkpoint from [Stylegan](https://github.com/NVlabs/stylegan) and put checkpoints in the folder of **./datasetGAN/dataset_release/stylegan_pretrain***. Please be aware that the any code dependency and checkpoint related to Stylegan, the license is under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.  
+*Download pretrained checkpoint from [Stylegan](https://github.com/NVlabs/stylegan) and convert the tensorflow checkpoint to pytorch. Put checkpoints in the folder of **./datasetGAN/dataset_release/stylegan_pretrain***. Please be aware that the any code dependency and checkpoint related to Stylegan, the license is under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.  
+
+Note: a good example of converting stylegan tensorlow checkpoint to pytorch is available this [Link](https://github.com/lernapparat/lernapparat/blob/master/style_gan/pytorch_style_gan.ipynb).
 
 ## Training 
 
