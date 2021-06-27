@@ -30,7 +30,7 @@ The dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](htt
 - Python 3.6 or 3.7 are supported.
 - Pytorch 1.4.0 + is recommended.
 - This code is tested with CUDA 10.2 toolkit and CuDNN 7.5.
-- All results in our paper are based on Tesla V100 GPUs with 32GB memory. 
+- All results in our paper are based on Nvidia Tesla V100 GPUs with 32GB memory. 
 - Please check the python package requirement from [`requirements.txt`](requirements.txt), and install using
 ```
 pip install -r requirements.txt
