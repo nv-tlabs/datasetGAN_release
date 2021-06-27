@@ -459,7 +459,7 @@ def main(args
     print(" *********************** Current number data " + str(num_data) + " ***********************")
 
 
-    batch_size = 64
+    batch_size = args['batch_size']
 
     train_loader = DataLoader(dataset=train_data, batch_size=batch_size, shuffle=True)
 

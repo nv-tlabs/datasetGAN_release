@@ -1,5 +1,6 @@
 {
   "exp_dir": "model_dir/face_34",
+    "batch_size": 64,
   "category": "face",
   "debug": false,
   "dim": [512, 512, 5088],

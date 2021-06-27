@@ -1,5 +1,6 @@
 {
   "exp_dir": "model_dir/car_20",
+  "batch_size": 64,
   "category": "car",
   "debug": false,
   "dim": [384, 512, 5056],

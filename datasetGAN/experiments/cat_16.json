@@ -1,5 +1,6 @@
 {
   "exp_dir": "model_dir/cat_16",
+    "batch_size": 64,
   "category": "cat",
   "debug": false,
   "dim": [256, 256, 4992],
