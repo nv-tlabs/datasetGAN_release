@@ -36,7 +36,7 @@ The dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](htt
 pip install -r requirements.txt
 ```
 
-- *Download Dataset from [google drive](https://drive.google.com/drive/folders/1Oa9XpyKnRSN5s9-ab2-5j3wvH374JOu8?usp=sharing)* and put it in the folder of ***./datasetGAN/dataset_release***.  Please be aware that the dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.
+- *Download Dataset from [google drive](https://drive.google.com/drive/folders/1Oa9XpyKnRSN5s9-ab2-5j3wvH374JOu8?usp=sharing)* and put it in the folder of ***./datasetGAN/dataset_release***. The cache npy files are explained in Section **Create your own model**.  Please be aware that the dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.
 
 - *Download pretrained checkpoint from [Stylegan](https://github.com/NVlabs/stylegan) and convert the tensorflow checkpoint to pytorch. We also release the [pytorch checkpoint](https://drive.google.com/drive/folders/1Hhu8aGxbnUtK-yHRD9BXZ3gn3bNNmsGi?usp=sharing)  for your convenience. Put checkpoints in the folder of **./checkpoint/stylegan_pretrain***. Please be aware that the any code dependency and checkpoint related to Stylegan, the license is under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.  
 
@@ -111,6 +111,24 @@ python test_deeplab_cross_validation.py --exp experiments/face_34.json\
 For training interpreter, we change the upsampling method from nearnest upsampling to bilinar upsampling in [line](https://github.com/nv-tlabs/datasetGAN_release/blob/release_finallll/datasetGAN/train_interpreter.py#L163) and update results in Table 1.  The table reports mIOU.
 
 <img src = "./figs/new_table.png" width="80%"/>
+
+## Create your own model
+
+To create your own model, please follow the following steps:
+
+1. Train your own stylegan model using official [Stylegan](https://github.com/NVlabs/stylegan) code and convert the tensorflow checkpoint to pytorch. Specific stylegan path in 
+
+   ```datasetGAN/experiments/customized.json```
+
+2. Run ```python datasetGAN/make_training_data.py --exp datasetGAN/experiments/customized.json --sv_path ./new_data ```. 
+
+   This function will generate sample images and dump two numpy files in sv_path.
+
+   a. ```avg_latent_stylegan1.npy``` (Dim: 18 *512) is used for truncation. It's average of w latent space. We sample 8000 from z space and calculate average of w.
+
+   b. ```latent_stylegan1.npy```  (Dim: number_data *512)  is cache z latent codes to retrive corresponding training images. 
+
+3. Annotate image as you like, follow the file format in  [google drive](https://drive.google.com/drive/folders/1Oa9XpyKnRSN5s9-ab2-5j3wvH374JOu8?usp=sharing) and put annotation in the folder of ***./datasetGAN/dataset_release***. 
 
 ## Citations
 

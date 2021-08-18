@@ -272,6 +272,13 @@ class G_mapping(nn.Sequential):
 
 
 
+    def make_mean_latent(self, n_latent):
+        latent_in = torch.randn(
+            n_latent, 512
+        ).cuda()
+        mean_latent = super().forward(latent_in).mean(0, keepdim=True)
+        mean_latent = mean_latent.unsqueeze(1).expand(-1, 18, -1)
+        return mean_latent
 
     def forward(self, x):
         x = super().forward(x)

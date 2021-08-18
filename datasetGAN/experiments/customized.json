@@ -1,0 +1,21 @@
+{
+  "exp_dir": "model_dir/new",
+  "batch_size": 64,
+  "category": "car",
+  "debug": false,
+  "dim": [384, 512, 5056],
+  "deeplab_res": 512,
+  "number_class": 20,
+  "testing_data_number_class": 20,
+  "max_training": 16,
+  "stylegan_ver": "1",
+  "annotation_data_from_w": false,
+  "annotation_mask_path": "",
+  "testing_path": "",
+  "average_latent": "",
+  "annotation_image_latent_path": "",
+  "stylegan_checkpoint": "FILL_THIS",
+  "model_num": 10,
+  "upsample_mode":"bilinear"
+}
+
