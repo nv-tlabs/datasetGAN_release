@@ -229,6 +229,7 @@ def generate_data(args, checkpoint_path, num_sample, start_step=0, vis=True):
         classifier.eval()
         classifier_list.append(classifier)
 
+    softmax_f = nn.Softmax(dim=1)
     with torch.no_grad():
         latent_cache = []
         image_cache = []
@@ -289,9 +290,9 @@ def generate_data(args, checkpoint_path, num_sample, start_step=0, vis=True):
 
                 all_seg.append(img_seg)
                 if mean_seg is None:
-                    mean_seg = img_seg
+                    mean_seg = softmax_f(img_seg)
                 else:
-                    mean_seg += img_seg
+                    mean_seg += softmax_f(img_seg)
 
                 img_seg_final = oht_to_scalar(img_seg)
                 img_seg_final = img_seg_final.reshape(args['dim'][0], args['dim'][1], 1)
@@ -301,7 +302,7 @@ def generate_data(args, checkpoint_path, num_sample, start_step=0, vis=True):
 
             mean_seg = mean_seg / len(all_seg)
 
-            full_entropy = Categorical(logits=mean_seg).entropy()
+            full_entropy = Categorical(mean_seg).entropy()
 
             js = full_entropy - torch.mean(torch.stack(all_entropy), 0)
 

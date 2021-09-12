@@ -108,11 +108,17 @@ python test_deeplab_cross_validation.py --exp experiments/face_34.json\
 --resume [path-to-downstream task checkpoint] --cross_validate True
 ```
 
-**June 21st Update:**
+**June 21 Update:**
 
 For training interpreter, we change the upsampling method from nearnest upsampling to bilinar upsampling in [line](https://github.com/nv-tlabs/datasetGAN_release/blob/release_finallll/datasetGAN/train_interpreter.py#L163) and update results in Table 1.  The table reports mIOU.
 
-<img src = "./figs/new_table.png" width="80%"/>
+**Sep 12 Update:**
+
+Thanks for [@greatwallet.](https://github.com/greatwallet) According to [issue](https://github.com/nv-tlabs/datasetGAN_release/issues/27), we fixed a uncertainty score calculation bug. The Ours-Fix row shows the results.
+
+<img src = "./figs/new_table2.png" width="80%"/>
+
+
 
 ## Create your own model
 
