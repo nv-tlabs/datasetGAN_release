@@ -19,9 +19,10 @@ This is the official code and data release for:
 
 - Generated dataset for downstream tasks is coming soon -- stay tuned!
 
-- **New version released under [[EditGAN](https://github.com/nv-tlabs/editGAN_release)].**. 
-   :white_check_mark: Training on real images with encoder, 
-   :white_check_mark: Support Stylegan2 backbone.
+- **New version released under [[EditGAN](https://github.com/nv-tlabs/editGAN_release)].**.  
+   :white_check_mark: Training on real images with encoder.  
+   :white_check_mark: Support Stylegan2 backbone.  
+   :white_check_mark: Support high precision semantic editing.  
       
    
 ## License
