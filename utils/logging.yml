@@ -1,0 +1,23 @@
+version: 1
+formatters:
+  simple:
+    format: "[%(name)s][L%(lineno)d][%(levelname)s] %(message)s"
+  complex:
+    format: "[%(name)s][L%(lineno)d][%(levelname)s][%(asctime)s] %(message)s"
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+  file:
+    class: logging.handlers.TimedRotatingFileHandler
+    when: midnight
+    backupCount: 5
+    level: DEBUG
+    formatter: simple
+    filename: debug.log
+loggers:
+  __main__:
+    level: DEBUG
+    handlers: [console]
+    propagate: yes

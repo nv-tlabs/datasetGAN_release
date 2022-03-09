@@ -44,7 +44,10 @@ import copy
 from numpy.random import choice
 from torch.distributions import Categorical
 import scipy.stats
-from utils.utils import multi_acc, colorize_mask, get_label_stas, latent_to_image, oht_to_scalar, Interpolate
+try:
+    from utils.utils import multi_acc, colorize_mask, get_label_stas, latent_to_image, oht_to_scalar, Interpolate
+except ModuleNotFoundError:
+    from utils import multi_acc, colorize_mask, get_label_stas, latent_to_image, oht_to_scalar, Interpolate
 import torch.optim as optim
 import argparse
 import glob
@@ -577,4 +580,3 @@ if __name__ == '__main__':
         generate_data(opts, args.resume, args.num_sample, vis=args.save_vis, start_step=args.start_step)
     else:
         main(opts)
-
