@@ -44,7 +44,7 @@ The dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](htt
 pip install -r requirements.txt
 ```
 
-- *Download Dataset from [google drive]([https://drive.google.com/drive/folders/17hVqkBQGx_GLipFsf0AJTzM_qnL9blH_?usp=sharing]) * and put it in the folder of ***./datasetGAN/dataset_release***. The cache npy files are explained in Section **Create your own model**.  Please be aware that the dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.
+- *Download Dataset from [google drive](https://drive.google.com/drive/folders/17hVqkBQGx_GLipFsf0AJTzM_qnL9blH_?usp=sharing) * and put it in the folder of ***./datasetGAN/dataset_release***. The cache npy files are explained in Section **Create your own model**.  Please be aware that the dataset of DatasetGAN is released under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.
 
 - *Download pretrained checkpoint from [Stylegan](https://github.com/NVlabs/stylegan) and convert the tensorflow checkpoint to pytorch. We also release the [pytorch checkpoint](https://drive.google.com/drive/folders/1Hhu8aGxbnUtK-yHRD9BXZ3gn3bNNmsGi?usp=sharing)  for your convenience. Put checkpoints in the folder of **./checkpoint/stylegan_pretrain***. Please be aware that the any code dependency and checkpoint related to Stylegan, the license is under the [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) license by NVIDIA Corporation.  
 
@@ -74,7 +74,7 @@ Note: Training time for 16 images is around one hour. 160G RAM is required to ru
 
 ![img](./figs/dataset.png)
 
-Download [Checkpoints]([https://drive.google.com/drive/folders/17hVqkBQGx_GLipFsf0AJTzM_qnL9blH_?usp=sharing])
+Download [Checkpoints](https://drive.google.com/drive/folders/17hVqkBQGx_GLipFsf0AJTzM_qnL9blH_?usp=sharing)
 
 #### 2. Run GAN Sampling  
 
@@ -142,7 +142,7 @@ To create your own model, please follow the following steps:
 
    b. ```latent_stylegan1.npy```  (Dim: number_data *512)  is cache z latent codes to retrive corresponding training images. 
 
-3. Annotate image as you like, follow the file format in  [google drive]([https://drive.google.com/drive/folders/17hVqkBQGx_GLipFsf0AJTzM_qnL9blH_?usp=sharing]) and put annotation in the folder of ***./datasetGAN/dataset_release***. 
+3. Annotate image as you like, follow the file format in  [google drive](https://drive.google.com/drive/folders/17hVqkBQGx_GLipFsf0AJTzM_qnL9blH_?usp=sharing) and put annotation in the folder of ***./datasetGAN/dataset_release***. 
 
 ## Citations
 
