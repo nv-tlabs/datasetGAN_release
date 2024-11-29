@@ -36,6 +36,7 @@ import numpy as np
 import os
 device_ids = [0]
 from PIL import Image
+from tqdm import tqdm
 import gc
 
 import pickle
@@ -51,6 +52,7 @@ import glob
 from torch.utils.data import Dataset, DataLoader
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 import cv2
+from imageio import imwrite as imsave
 
 class trainData(Dataset):
 
@@ -243,7 +245,7 @@ def generate_data(args, checkpoint_path, num_sample, start_step=0, vis=True):
 
         print( "num_sample: ", num_sample)
 
-        for i in range(num_sample):
+        for i in tqdm(range(num_sample)):
             if i % 100 == 0:
                 print("Genearte", i, "Out of:", num_sample)
 
@@ -317,9 +319,9 @@ def generate_data(args, checkpoint_path, num_sample, start_step=0, vis=True):
 
                 color_mask = 0.7 * colorize_mask(img_seg_final, palette) + 0.3 * img
 
-                scipy.misc.imsave(os.path.join(result_path, "vis_" + str(i) + '.jpg'),
+                imsave(os.path.join(result_path, "vis_" + str(i) + '.jpg'),
                                   color_mask.astype(np.uint8))
-                scipy.misc.imsave(os.path.join(result_path, "vis_" + str(i) + '_image.jpg'),
+                imsave(os.path.join(result_path, "vis_" + str(i) + '_image.jpg'),
                                   img.astype(np.uint8))
             else:
                 seg_cache.append(img_seg_final)
@@ -425,7 +427,7 @@ def prepare_data(args, palette):
 
 
     vis = np.concatenate(vis, 1)
-    scipy.misc.imsave(os.path.join(args['exp_dir'], "train_data.jpg"),
+    imsave(os.path.join(args['exp_dir'], "train_data.jpg"),
                       vis)
 
     return all_feature_maps_train, all_mask_train, num_data
@@ -485,44 +487,45 @@ def main(args
         best_loss = 10000000
         stop_sign = 0
         for epoch in range(100):
-            for X_batch, y_batch in train_loader:
-                X_batch, y_batch = X_batch.to(device), y_batch.to(device)
-                y_batch = y_batch.type(torch.long)
-                y_batch = y_batch.type(torch.long)
+            with tqdm(train_loader, unit="batch") as tepoch:
+                for X_batch, y_batch in tepoch:
+                    X_batch, y_batch = X_batch.to(device), y_batch.to(device)
+                    y_batch = y_batch.type(torch.long)
+                    y_batch = y_batch.type(torch.long)
 
-                optimizer.zero_grad()
-                y_pred = classifier(X_batch)
-                loss = criterion(y_pred, y_batch)
-                acc = multi_acc(y_pred, y_batch)
+                    optimizer.zero_grad()
+                    y_pred = classifier(X_batch)
+                    loss = criterion(y_pred, y_batch)
+                    acc = multi_acc(y_pred, y_batch)
 
-                loss.backward()
-                optimizer.step()
+                    loss.backward()
+                    optimizer.step()
 
-                iteration += 1
-                if iteration % 1000 == 0:
-                    print('Epoch : ', str(epoch), 'iteration', iteration, 'loss', loss.item(), 'acc', acc)
-                    gc.collect()
+                    iteration += 1
+                    if iteration % 1000 == 0:
+                        print('Epoch : ', str(epoch), 'iteration', iteration, 'loss', loss.item(), 'acc', acc)
+                        gc.collect()
 
 
-                if iteration % 5000 == 0:
-                    model_path = os.path.join(args['exp_dir'],
-                                              'model_20parts_iter' +  str(iteration) + '_number_' + str(MODEL_NUMBER) + '.pth')
-                    print('Save checkpoint, Epoch : ', str(epoch), ' Path: ', model_path)
+                    if iteration % 5000 == 0:
+                        model_path = os.path.join(args['exp_dir'],
+                                                  'model_20parts_iter' +  str(iteration) + '_number_' + str(MODEL_NUMBER) + '.pth')
+                        print('Save checkpoint, Epoch : ', str(epoch), ' Path: ', model_path)
 
-                    torch.save({'model_state_dict': classifier.state_dict()},
-                               model_path)
+                        torch.save({'model_state_dict': classifier.state_dict()},
+                                   model_path)
 
-                if epoch > 3:
-                    if loss.item() < best_loss:
-                        best_loss = loss.item()
-                        break_count = 0
-                    else:
-                        break_count += 1
+                    if epoch > 3:
+                        if loss.item() < best_loss:
+                            best_loss = loss.item()
+                            break_count = 0
+                        else:
+                            break_count += 1
 
-                    if break_count > 50:
-                        stop_sign = 1
-                        print("*************** Break, Total iters,", iteration, ", at epoch", str(epoch), "***************")
-                        break
+                        if break_count > 50:
+                            stop_sign = 1
+                            print("*************** Break, Total iters,", iteration, ", at epoch", str(epoch), "***************")
+                            break
 
             if stop_sign == 1:
                 break
